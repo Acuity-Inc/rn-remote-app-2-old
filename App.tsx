@@ -22,7 +22,7 @@
        <StatusBar />
        <ScrollView contentContainerStyle={styles.scrollContainer}>
          <View style={styles.mainContainer}>
-           <Text>Mini App One Test</Text>
+           <Text>Mini App Two Test</Text>
          </View>
        </ScrollView>
      </SafeAreaView>
