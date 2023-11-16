@@ -2,6 +2,8 @@ import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import * as Repack from '@callstack/repack';
 
+const STANDALONE = Boolean(process.env.STANDALONE);
+
 /**
  * More documentation, installation, usage, motivation and differences with Metro is available at:
  * https://github.com/callstack/repack/blob/main/README.md
@@ -150,8 +152,7 @@ export default (env) => {
         {
           test: /\.[jt]sx?$/,
           include: [
-            /node_modules(.*[/\\])+react\//,
-            /node_modules(.*[/\\])+react-native/,
+            /node_modules(.*[/\\])+react/,
             /node_modules(.*[/\\])+@react-native/,
             /node_modules(.*[/\\])+@react-navigation/,
             /node_modules(.*[/\\])+@react-native-community/,
@@ -230,6 +231,23 @@ export default (env) => {
           bundleFilename,
           sourceMapFilename,
           assetsPath,
+        },
+      }),
+      new Repack.plugins.ModuleFederationPlugin({
+        name: 'rnremoteapp2',
+        exposes: {
+          './App': './App.tsx',
+        },
+        shared: {
+          react: {
+            ...Repack.Federated.SHARED_REACT,
+            eager: STANDALONE, // to be figured out
+          },
+          'react-native': {
+            ...Repack.Federated.SHARED_REACT_NATIVE,
+            eager: STANDALONE, // to be figured out
+            requiredVersion: '0.71.3',
+          },
         },
       }),
     ],
