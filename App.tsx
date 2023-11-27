@@ -5,7 +5,7 @@
  * @format
  */
 
- import React from "react";
+ import React from 'react';
  import {
    SafeAreaView,
    ScrollView,
@@ -13,8 +13,7 @@
    StyleSheet,
    Text,
    View,
-
- } from "react-native";
+ } from 'react-native';
  
  function App(): JSX.Element {
    return (
@@ -32,12 +31,12 @@
  const styles = StyleSheet.create({
    mainContainer: {
      flex: 1,
-     justifyContent: "center",
-     alignItems: "center",
-     backgroundColor: "#ACDDDE",
+     justifyContent: 'center',
+     alignItems: 'center',
+     backgroundColor: '#ACDDDE',
    },
    scrollContainer: {
-     height: "100%",
+     height: '100%',
    },
  });
  
